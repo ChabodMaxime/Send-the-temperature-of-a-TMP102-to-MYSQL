@@ -6,7 +6,7 @@ EthernetClient client;
 byte foctet, soctet; 
 int val; 
 float temp;
-float final; 
+float finally_temp; 
  
 void setup() 
 {
@@ -36,13 +36,13 @@ void loop()
     val <<= 4; 
     val |= (soctet >> 4);    
     temp = val * 0.0625;
-    final = temp - 5;
+    finally_temp = temp - 5;
     
     int sync = client.connect("192.168.0.1", 80);
     if(sync == 1)
     {
         client.print("GET /temp.php?v=");
-        client.print(final);
+        client.print(finally_temp);
         client.print(" ");
         client.print("HTTP/1.1");
         client.println();
